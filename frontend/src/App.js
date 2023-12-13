@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import { useState } from 'react';
 import PlaceIcon from '@mui/icons-material/Place';
 
@@ -11,18 +11,18 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className="App" style={{ width: '70vw', height: '70vh' }}>
       <ReactMapGL
-      {...viewPort}
+        {...viewPort}
         mapboxAccessToken={process.env.REACT_APP_MAPBOX}
-        style={{width: 1200, height: 1200}}
+        width="100%"
+        height="100%"
         mapStyle="mapbox://styles/mapbox/streets-v9"
         onViewportChange={(viewPort) => setViewport(viewPort)}
       >
-        <Marker longitude={-0.1246} latitude={51.5007} offsetLeft={-20} offsetTop={-10}>
-          <PlaceIcon style = {{fontSize: viewPort.zoom * 7, color:"slateblue"}}/>
-      
-        </Marker>
+       <Marker longitude={-0.1246} latitude={51.5007}>
+        <PlaceIcon style={{ color: 'slateblue' }} />
+      </Marker>
       </ReactMapGL>
     </div>
   );
